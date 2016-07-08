@@ -17,3 +17,5 @@ LICENSE
 Gemfile.lock
 barbershop.db
 barbershop.db
+barbershop.db
+db/schema.rb
