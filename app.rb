@@ -69,3 +69,8 @@ post '/contacts' do
 
   erb :contacts
 end
+
+get '/barber/:id' do
+	@id = params["id"]
+	erb :barber
+end	
