@@ -24,6 +24,10 @@ get '/visit'do
 	erb :visit
 end
 
+get '/contacts' do
+  erb :contacts
+end
+
 post '/visit' do
 	@barbers = Barber.order 'name desc'
 	@master = params[:master]
@@ -35,9 +39,8 @@ post '/visit' do
 	hh_ver = {:username => 'Не указано имя',
 			:master => 'Не указан мастер',
 			:date_ => 'Не указана дата'}
+
 	@error = hh_ver.select {|key,_| params[key] == ''}.values.join(", ")		
-
-
 
 	if @error == ''
 		cl = Client.new
@@ -47,7 +50,30 @@ post '/visit' do
 		cl.color = @color
 		cl.barber = @master
 		cl.save
+		
+		@user_name = ''
+		@user_phone = ''
+		@color 		= params[:color].strip
+		@date_visit = ''
+		@done = 'You visit save successfully!'
 	end	
 
 	erb :visit
+end
+
+post '/contacts' do	
+	@e_mail = params[:email].strip
+	@text = params[:text].strip
+	
+	hh_ver = {:email => 'Не указан e-mail',
+			:text => 'Не набрано сообщение'}
+
+	@error = hh_ver.select {|key,_| params[key] == ''}.values.join(", ")
+
+	if @error == ''
+		@e_mail = ''
+		@done = 'You entry save successfully!!'
+	end
+
+  erb :contacts
 end
