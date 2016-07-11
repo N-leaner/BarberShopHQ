@@ -37,7 +37,11 @@ end
 
 post '/visit' do
 	c = Client.new params[:client]
-	c.save
+	if c.save
+		@done = 'Спасибо, Вы записались'	
+	else
+		@error = 'Ошибка записи - одно из полей не заполнено'
+	end	
 
 	erb :visit
 end
