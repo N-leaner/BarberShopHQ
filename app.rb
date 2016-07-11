@@ -28,6 +28,7 @@ end
 
 get '/visit'do
 	@barbers = Barber.order 'name desc'
+	@c = Client.new
 	erb :visit
 end
 
@@ -36,12 +37,12 @@ get '/contacts' do
 end
 
 post '/visit' do
-	c = Client.new params[:client]
-	if c.save
+	@c = Client.new params[:client]
+	if @c.save
 		@done = 'Спасибо, Вы записались'	
 	else
 		#@error = 'Ошибка записи - одно из полей не заполнено'
-		@error = c.errors.full_messages.first
+		@error = @c.errors.full_messages.first
 	end	
 
 	erb :visit

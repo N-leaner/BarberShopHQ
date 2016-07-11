@@ -6,14 +6,14 @@
   <div class="col-xs-5">
     <div class="form-group">
       <label>Имя</label>
-      <input value="" name="client[name]" type="text" class="form-control" placeholder="Введите ваше имя">
+      <input value="<%= @c.name %>" name="client[name]" type="text" class="form-control" placeholder="Введите ваше имя">
     </div>
   </div>
 
   <div class="col-xs-3">
     <div class="form-group">
       <label>Телефон</label>
-      <input value="" name="client[phone]" type="tel" class="form-control" placeholder="Введите ваш телефон">
+      <input value="<%= @c.phone %>" name="client[phone]" type="tel" class="form-control" placeholder="Введите ваш телефон">
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
   <div class="col-xs-3">
     <div class="form-group">
       <label>Дата и время записи</label>
-      <input id="datetimepicker" value="" name="client[datestamp]" type="text" class="form-control" placeholder="Введите дату и время записи">      
+      <input id="datetimepicker" value="<%= @c.datestamp %>" name="client[datestamp]" type="text" class="form-control" placeholder="Введите дату и время записи">      
     </div>  
 </div>
 
