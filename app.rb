@@ -40,7 +40,8 @@ post '/visit' do
 	if c.save
 		@done = 'Спасибо, Вы записались'	
 	else
-		@error = 'Ошибка записи - одно из полей не заполнено'
+		#@error = 'Ошибка записи - одно из полей не заполнено'
+		@error = c.errors.full_messages.first
 	end	
 
 	erb :visit
