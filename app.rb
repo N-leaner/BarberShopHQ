@@ -14,6 +14,10 @@ class Barber < ActiveRecord::Base
 
 end	
 
+class Contact < ActiveRecord::Base
+
+end	
+
 get '/' do	
 	@barbers = Barber.all
 	erb :index
@@ -63,7 +67,7 @@ end
 
 post '/contacts' do	
 	@e_mail = params[:email].strip
-	@text = params[:text].strip
+	note = params[:text].strip
 	
 	hh_ver = {:email => 'Не указан e-mail',
 			:text => 'Не набрано сообщение'}
@@ -71,6 +75,11 @@ post '/contacts' do
 	@error = hh_ver.select {|key,_| params[key] == ''}.values.join(", ")
 
 	if @error == ''
+		cont = Contact.new
+		cont.email = @e_mail
+		cont.note = note		
+		cont.save
+
 		@e_mail = ''
 		@done = 'You entry save successfully!!'
 	end
